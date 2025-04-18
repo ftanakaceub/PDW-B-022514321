@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  database:
+    container_name: pdw-database
+    image: postgres:16
+    restart: always
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    ports:
+      - 5432:5432
+    volumes:
+      - ./.data/database:/var/lib/postgresql/data
+      - ./.data/init-database.sql:/docker-entrypoint-initdb.d/database.sql
+
+  backend:
+    container_name: pdw-backend
+    build: ./backend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./backend:/backend
+      - /backend/node_modules
+    environment:
+      - NODE_ENV=development
+    command: npm start
