@@ -3,5 +3,5 @@ WORKDIR /backend
 COPY package*.json /backend
 RUN npm i
 COPY . /backend
-EXPOSE 5000
+EXPOSE 3000
 CMD ["npm", "run", "start"]
