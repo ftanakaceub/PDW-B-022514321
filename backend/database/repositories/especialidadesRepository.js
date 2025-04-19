@@ -19,6 +19,13 @@ const getById = async (id) => {
   return parser(resposta);
 };
 
+const getByEspecialidadeId = async (especialidadeId) => {
+  const resposta = await query("SELECT * FROM especialidades WHERE id = $1", [
+    especialidadeId,
+  ]);
+  return parser(resposta);
+};
+
 const create = async (especialidade) => {
   const resposta = await query(
     "INSERT INTO especialidades (nome) VALUES ($1) RETURNING *",
@@ -36,8 +43,17 @@ const update = async (id, especialidade) => {
 };
 
 const deleteById = async (id) => {
-  const resposta = await query("DELETE FROM especialidades WHERE id = $1", [id]);
+  const resposta = await query("DELETE FROM especialidades WHERE id = $1", [
+    id,
+  ]);
   return resposta.rowCount;
 };
 
-module.exports = { getAll, getById, create, update, deleteById };
+module.exports = {
+  getAll,
+  getById,
+  getByEspecialidadeId,
+  create,
+  update,
+  deleteById,
+};

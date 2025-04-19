@@ -18,9 +18,13 @@ CREATE TABLE profissionais (
 );
 
 INSERT INTO profissionais (nome, especialidade_id) SELECT 'Dr. João Silva', id FROM especialidades WHERE nome = 'Cardiologia';
+INSERT INTO profissionais (nome, especialidade_id) SELECT 'Dr. Pedro Cardoso', id FROM especialidades WHERE nome = 'Cardiologia';
 INSERT INTO profissionais (nome, especialidade_id) SELECT 'Dr. Maria Oliveira', id FROM especialidades WHERE nome = 'Dermatologia';
+INSERT INTO profissionais (nome, especialidade_id) SELECT 'Dra. Julia Costa', id FROM especialidades WHERE nome = 'Dermatologia';
 INSERT INTO profissionais (nome, especialidade_id) SELECT 'Dr. Carlos Santos', id FROM especialidades WHERE nome = 'Pediatria';
-INSERT INTO profissionais (nome, especialidade_id) SELECT 'Dr. Ana Pereira', id FROM especialidades WHERE nome = 'Psiquiatria';
+INSERT INTO profissionais (nome, especialidade_id) SELECT 'Dra. Mariana Lima', id FROM especialidades WHERE nome = 'Pediatria';
+INSERT INTO profissionais (nome, especialidade_id) SELECT 'Dra. Ana Pereira', id FROM especialidades WHERE nome = 'Psiquiatria';
+INSERT INTO profissionais (nome, especialidade_id) SELECT 'Dr. Marcos Oliveira', id FROM especialidades WHERE nome = 'Psiquiatria';
 
 -- Tabela de Usuários (Pacientes)
 CREATE TABLE usuarios (
