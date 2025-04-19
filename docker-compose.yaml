@@ -23,4 +23,10 @@ services:
     volumes:
       - ./backend:/backend
       - /backend/node_modules
+    environment:
+      - DB_USER=${POSTGRES_USER}
+      - DB_PASS=${POSTGRES_PASSWORD}
+      - DB_HOST=database
+      - DB_PORT=${POSTGRES_PORT}
+      - DB_NAME=${POSTGRES_DB}
     command: npm run start
