@@ -6,6 +6,8 @@ const {
   deleteById,
 } = require("../database/repositories/especialidadesRepository");
 
+const { getByEspecialidadeId } = require("../database/repositories/profissionaisRepository");
+
 const getTodasEspecialidades = async (req, res) => {
   const encontrados = await getAll();
   res.send(encontrados);
@@ -16,6 +18,8 @@ const getEspecialidadeById = async (req, res) => {
   if (encontrados.length === 0) {
     res.status(404).send("Especialidade não encontrada");
   } else {
+    const profissionais = await getByEspecialidadeId(req.params.id);
+    encontrados[0].profissionais = profissionais;
     res.send(encontrados[0]);
   }
 };

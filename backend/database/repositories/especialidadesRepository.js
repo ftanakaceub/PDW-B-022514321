@@ -1,5 +1,4 @@
 const { query } = require("../database");
-const { getByEspecialidadeId } = require("./profissionaisRepository");
 
 const parser = (resposta) => {
   return resposta.map((item) => ({
@@ -17,15 +16,7 @@ const getById = async (id) => {
   const resposta = await query("SELECT * FROM especialidades WHERE id = $1", [
     id,
   ]);
-
-  if (resposta.length === 0) {
-    return null;
-  }
-
-  const profissionais = await getByEspecialidadeId(id);
-  const especialidades = parser(resposta);
-  especialidades[0].profissionais = profissionais;
-  return especialidades;
+  return parser(resposta);
 };
 
 const create = async (especialidade) => {
