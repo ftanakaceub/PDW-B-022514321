@@ -23,6 +23,14 @@ const getById = async (id) => {
   return parser(resposta);
 };
 
+const getByEspecialidadeId = async (especialidadeId) => {
+    const resposta = await query(
+      "SELECT * FROM profissionais WHERE especialidade_id = $1",
+      [especialidadeId]
+    );
+    return parser(resposta);
+  };
+
 const create = async (profissional) => {
   const resposta = await query(
     "INSERT INTO profissionais (nome, especialidade_id) VALUES ($1, $2) RETURNING *",
@@ -44,4 +52,4 @@ const deleteById = async (id) => {
   return resposta.rowCount;
 };
 
-module.exports = { getAll, getById, create, update, deleteById };
+module.exports = { getAll, getById, getByEspecialidadeId, create, update, deleteById };
