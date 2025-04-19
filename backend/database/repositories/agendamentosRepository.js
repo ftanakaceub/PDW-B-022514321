@@ -25,7 +25,7 @@ const getByProfissionalId = async (profissionalId) => {
   return parser(resposta);
 };
 
-const getByUsuarioId = async (usuarioId) => {   
+const getByUsuarioId = async (usuarioId) => {
   const resposta = await query(
     "SELECT a.id, a.data_hora, p.nome as profissional_nome, u.nome as usuario_nome, u.cpf as usuario_cpf FROM agendamentos a LEFT JOIN profissionais p ON a.profissional_id = p.id LEFT JOIN usuarios u ON a.usuario_id = u.id WHERE a.usuario_id = $1",
     [usuarioId]
@@ -33,7 +33,7 @@ const getByUsuarioId = async (usuarioId) => {
   return parser(resposta);
 };
 
-const getById = async (id) => { 
+const getById = async (id) => {
   const resposta = await query(
     "SELECT a.id, a.data_hora, p.nome as profissional_nome, u.nome as usuario_nome, u.cpf as usuario_cpf FROM agendamentos a LEFT JOIN profissionais p ON a.profissional_id = p.id LEFT JOIN usuarios u ON a.usuario_id = u.id WHERE a.id = $1",
     [id]
@@ -41,8 +41,7 @@ const getById = async (id) => {
   return parser(resposta);
 };
 
-const create = async (agendamento) => { 
-  console.log("🚀 ~ create ~ agendamento:", agendamento)
+const create = async (agendamento) => {
   const resposta = await query(
     "INSERT INTO agendamentos (usuario_id, profissional_id, data_hora) VALUES ($1, $2, $3) RETURNING *",
     [agendamento.usuario_id, agendamento.profissional_id, agendamento.data_hora]
@@ -50,17 +49,30 @@ const create = async (agendamento) => {
   return parser(resposta);
 };
 
-const update = async (id, agendamento) => { 
+const update = async (id, agendamento) => {
   const resposta = await query(
     "UPDATE agendamentos SET usuario_id = $1, profissional_id = $2, data_hora = $3 WHERE id = $4 RETURNING *",
-    [agendamento.usuario_id, agendamento.profissional_id, agendamento.data_hora, id]
+    [
+      agendamento.usuario_id,
+      agendamento.profissional_id,
+      agendamento.data_hora,
+      id,
+    ]
   );
   return parser(resposta);
 };
 
-const deleteById = async (id) => { 
+const deleteById = async (id) => {
   const resposta = await query("DELETE FROM agendamentos WHERE id = $1", [id]);
   return resposta.rowCount;
 };
 
-module.exports = { getAll, getByProfissionalId, getByUsuarioId, getById, create, update, deleteById };
+module.exports = {
+  getAll,
+  getByProfissionalId,
+  getByUsuarioId,
+  getById,
+  create,
+  update,
+  deleteById,
+};
