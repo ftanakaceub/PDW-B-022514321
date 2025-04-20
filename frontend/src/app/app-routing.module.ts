@@ -9,7 +9,7 @@ const routes: Routes = [
     component: ListarEspecialidadesComponent
   },
   {
-    path: 'especialidades/form',
+    path: 'especialidades/form/:id',
     component: FormEspecialidadeComponent
   }
 ];

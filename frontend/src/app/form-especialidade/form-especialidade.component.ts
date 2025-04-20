@@ -12,7 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class FormEspecialidadeComponent implements OnInit {
   especialidadeForm: FormGroup;
   isEditMode = false;
-  especialidadeId: number | null = null;
+  especialidadeId: string | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -29,7 +29,7 @@ export class FormEspecialidadeComponent implements OnInit {
     this.route.params.subscribe(params => {
       if (params['id']) {
         this.isEditMode = true;
-        this.especialidadeId = +params['id'];
+        this.especialidadeId = params['id'];
         this.loadEspecialidade();
       }
     });

@@ -21,4 +21,14 @@ export class ListarEspecialidadesComponent {
   adicionarEspecialidade() {
     this.router.navigate(['/especialidades/form']);
   }
+
+  editarEspecialidade(id: string) {
+    this.router.navigate(['/especialidades/form', id]);
+  }
+
+  deletarEspecialidade(id: string) {
+    this.especialidadeService.deletarEspecialidade(id).subscribe(() => {
+      this.especialidades = this.especialidades.filter(e => e.id !== id);
+    });
+  }
 }

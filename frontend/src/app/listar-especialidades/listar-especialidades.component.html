@@ -15,8 +15,8 @@
         <td>{{especialidade.id}}</td>
         <td>{{especialidade.nome}}</td>
         <td>
-          <button class="btn btn-primary btn-sm me-2">Editar</button>
-          <button class="btn btn-danger btn-sm">Excluir</button>
+          <button *ngIf="especialidade.id" class="btn btn-primary btn-sm me-2" (click)="editarEspecialidade(especialidade.id)">Editar</button>
+          <button *ngIf="especialidade.id" class="btn btn-danger btn-sm" (click)="deletarEspecialidade(especialidade.id)">Excluir</button>
         </td>
       </tr>
     </tbody>

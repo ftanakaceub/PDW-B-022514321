@@ -17,7 +17,7 @@ export class EspecialidadeService {
     return this.http.get<Especialidade[]>(this.apiUrl);
   }
 
-  obterEspecialidade(id: number): Observable<Especialidade> {
+  obterEspecialidade(id: string): Observable<Especialidade> {
     return this.http.get<Especialidade>(`${this.apiUrl}/${id}`);
   }
 
@@ -25,11 +25,11 @@ export class EspecialidadeService {
     return this.http.post<Especialidade>(this.apiUrl, especialidade);
   }
 
-  atualizarEspecialidade(id: number, especialidade: Especialidade): Observable<Especialidade> {
+  atualizarEspecialidade(id: string, especialidade: Especialidade): Observable<Especialidade> {
     return this.http.put<Especialidade>(`${this.apiUrl}/${id}`, especialidade);
   }
 
-  deletarEspecialidade(id: number): Observable<void> {
+  deletarEspecialidade(id: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 } 
