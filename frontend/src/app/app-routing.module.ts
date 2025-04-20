@@ -6,11 +6,17 @@ import { ListarProfissionaisComponent } from './listar-profissionais/listar-prof
 import { FormProfissionaisComponent } from './form-profissionais/form-profissionais.component';
 import { ListarUsuariosComponent } from './listar-usuarios/listar-usuarios.component';
 import { FormUsuariosComponent } from './form-usuarios/form-usuarios.component';
+import { ListarAgendamentosComponent } from './listar-agendamentos/listar-agendamentos.component';
+import { FormAgendamentosComponent } from './form-agendamentos/form-agendamentos.component';
 
 const routes: Routes = [
   {
     path: 'especialidades',
     component: ListarEspecialidadesComponent
+  },
+  {
+    path: 'especialidades/form',
+    component: FormEspecialidadeComponent
   },
   {
     path: 'especialidades/form/:id',
@@ -39,6 +45,18 @@ const routes: Routes = [
   {
     path: 'usuarios/form/:id',
     component: FormUsuariosComponent
+  },
+  {
+    path: 'agendamentos',
+    component: ListarAgendamentosComponent
+  },
+  {
+      path: 'agendamentos/form',
+    component: FormAgendamentosComponent
+  },
+  {
+    path: 'agendamentos/form/:id',
+    component: FormAgendamentosComponent
   }
 ];
 

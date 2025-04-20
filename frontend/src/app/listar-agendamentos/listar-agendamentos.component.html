@@ -1,0 +1,40 @@
+<p>listar-agendamentos works!</p>
+<div class="container">
+  <h2>Lista de Agendamentos</h2>
+  <button class="btn btn-primary btn-sm me-2" (click)="adicionarAgendamento()">
+    Adicionar
+  </button>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Data e Hora</th>
+        <th>Profissional</th>
+        <th>Usuário</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let agendamento of agendamentos">
+        <td>{{ agendamento.id }}</td>
+        <td>{{ agendamento.data_hora | date : "dd/MM/yyyy HH:mm" }}</td>
+        <td>{{ agendamento.profissional_nome }}</td>
+        <td>{{ agendamento.usuario_nome }}</td>
+        <td>
+          <button
+            class="btn btn-primary btn-sm me-2"
+            (click)="editarAgendamento(agendamento.id)"
+          >
+            Editar
+          </button>
+          <button
+            class="btn btn-danger btn-sm"
+            (click)="excluirAgendamento(agendamento.id)"
+          >
+            Excluir
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
