@@ -3,6 +3,7 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+var cors = require("cors");
 
 var indexRouter = require("./routes/index");
 var especialidadesRouter = require("./routes/especialidadesRoutes");
@@ -10,6 +11,13 @@ var profissionaisRouter = require("./routes/profissionaisRoutes");
 var usuariosRouter = require("./routes/usuariosRotas");
 var agendamentosRouter = require("./routes/agendamentosRoutes");
 var app = express();
+
+// Configuração do CORS
+app.use(cors({
+  origin: ['http://localhost:4200'], // URLs do frontend Angular
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));

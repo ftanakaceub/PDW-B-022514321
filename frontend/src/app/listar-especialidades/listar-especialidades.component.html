@@ -1,0 +1,24 @@
+<div class="container">
+  <h1>Especialidades</h1>
+
+  <button class="btn btn-primary mb-3" (click)="adicionarEspecialidade()">Adicionar Especialidade</button>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let especialidade of especialidades">
+        <td>{{especialidade.id}}</td>
+        <td>{{especialidade.nome}}</td>
+        <td>
+          <button class="btn btn-primary btn-sm me-2">Editar</button>
+          <button class="btn btn-danger btn-sm">Excluir</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

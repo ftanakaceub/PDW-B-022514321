@@ -19,7 +19,7 @@ services:
     container_name: pdw-backend
     build: ./backend
     ports:
-      - 3001:3000
+      - 3000:3000
     volumes:
       - ./backend:/backend
       - /backend/node_modules
@@ -34,7 +34,11 @@ services:
     container_name: pdw-frontend
     build: ./frontend
     ports:
-      - 3000:3000
+      - 4200:4200
     volumes:
       - ./frontend:/frontend
       - /frontend/node_modules
+    environment:
+      - NODE_ENV=development
+      - API_URL=backend
+      - API_PORT=3000
