@@ -8,12 +8,13 @@ import { Profissional } from '../models/profissional';
 import { Usuario } from '../models/usuarios';
 import { ProfissionaisService } from '../services/profissionais.service';
 import { UsuariosService } from '../services/usuarios.service';
+import { combineLatest, forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-form-agendamentos',
   standalone: false,
   templateUrl: './form-agendamentos.component.html',
-  styleUrl: './form-agendamentos.component.css'
+  styleUrl: './form-agendamentos.component.css',
 })
 export class FormAgendamentosComponent {
   agendamentoForm: FormGroup;
@@ -37,39 +38,41 @@ export class FormAgendamentosComponent {
     });
   }
 
-  ngOnInit() {  
+  ngOnInit() {
     this.route.params.subscribe((params) => {
       if (params['id']) {
         this.isEditMode = true;
         this.agendamentoId = params['id'];
-        this.carregarAgendamento();
       }
-      this.carregarProfissionais();
-      this.carregarUsuarios();
-    });
-  }
 
-  carregarProfissionais() {
-    this.profissionaisService.listarProfissionais().subscribe((profissionais) => {
-      this.profissionais = profissionais;
-    });
-  }
-
-  carregarUsuarios() {
-    this.usuariosService.listarUsuarios().subscribe((usuarios) => {
-      this.usuarios = usuarios;
+      combineLatest([
+        this.profissionaisService.listarProfissionais(),
+        this.usuariosService.listarUsuarios(),
+      ]).subscribe((resposta) => {
+        this.profissionais = resposta[0];
+        this.usuarios = resposta[1];
+        this.carregarAgendamento();
+      });
     });
   }
 
   carregarAgendamento() {
     if (this.agendamentoId) {
-      this.agendamentosService.obterAgendamento(this.agendamentoId).subscribe((agendamento) => {
-        this.agendamentoForm.patchValue({
-          data_hora: agendamento.data_hora,
-          profissional_id: this.profissionais.find(p => p.nome ===  agendamento.profissional_nome)?.id,
-          usuario_id: this.usuarios.find(u => u.nome === agendamento.usuario_nome)?.id,
+      this.agendamentosService
+        .obterAgendamento(this.agendamentoId)
+        .subscribe((agendamento) => {
+          this.agendamentoForm.patchValue({
+            data_hora: new Date(agendamento.data_hora)
+              .toISOString()
+              .slice(0, 16),
+            profissional_id: this.profissionais.find(
+              (p) => p.nome == agendamento.profissional_nome
+            )?.id,
+            usuario_id: this.usuarios.find(
+              (u) => u.nome == agendamento.usuario_nome
+            )?.id
+          });
         });
-      });
     }
   }
 
@@ -78,14 +81,16 @@ export class FormAgendamentosComponent {
       const agendamentoData = this.agendamentoForm.value;
 
       if (this.isEditMode && this.agendamentoId) {
-        this.agendamentosService.atualizarAgendamento(this.agendamentoId, agendamentoData).subscribe({
-          next: () => {
-            this.router.navigate(['/agendamentos']);
-          },
-          error: (error) => {
-            console.error('Erro ao atualizar agendamento:', error);
-          }
-        });
+        this.agendamentosService
+          .atualizarAgendamento(this.agendamentoId, agendamentoData)
+          .subscribe({
+            next: () => {
+              this.router.navigate(['/agendamentos']);
+            },
+            error: (error) => {
+              console.error('Erro ao atualizar agendamento:', error);
+            },
+          });
       } else {
         this.agendamentosService.criarAgendamento(agendamentoData).subscribe({
           next: () => {
@@ -93,7 +98,7 @@ export class FormAgendamentosComponent {
           },
           error: (error) => {
             console.error('Erro ao criar agendamento:', error);
-          }
+          },
         });
       }
     }
@@ -101,5 +106,5 @@ export class FormAgendamentosComponent {
 
   cancelar() {
     this.router.navigate(['/agendamentos']);
-  } 
+  }
 }

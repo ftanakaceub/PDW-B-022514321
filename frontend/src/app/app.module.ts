@@ -13,6 +13,7 @@ import { ListarUsuariosComponent } from './listar-usuarios/listar-usuarios.compo
 import { FormUsuariosComponent } from './form-usuarios/form-usuarios.component';
 import { ListarAgendamentosComponent } from './listar-agendamentos/listar-agendamentos.component';
 import { FormAgendamentosComponent } from './form-agendamentos/form-agendamentos.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { FormAgendamentosComponent } from './form-agendamentos/form-agendamentos
     FormUsuariosComponent,
     ListarAgendamentosComponent,
     FormAgendamentosComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
