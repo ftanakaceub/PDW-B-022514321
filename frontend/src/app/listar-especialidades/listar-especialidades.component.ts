@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Especialidade } from '../models/especialidades';
+import { Especialidade } from '../models/especialidade';
 import { EspecialidadeService } from '../services/especialidade.service';
 import { Router } from '@angular/router';
 

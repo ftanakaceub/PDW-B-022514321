@@ -1,0 +1,26 @@
+<p>listar-profissionais works!</p>
+<div class="container">
+  <h1>Profissionais</h1>
+
+  <button class="btn btn-primary mb-3" (click)="adicionarProfissional()">Adicionar Profissional</button>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Especialidade</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let profissional of profissionais">
+        <td>{{profissional.id}}</td>
+        <td>{{profissional.nome}}</td>
+        <td>{{profissional.especialidade_nome}}</td>
+        <td>
+          <button *ngIf="profissional.id" class="btn btn-primary btn-sm me-2" (click)="editarProfissional(profissional.id)">Editar</button>
+          <button *ngIf="profissional.id" class="btn btn-danger btn-sm" (click)="deletarProfissional(profissional.id)">Excluir</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
