@@ -14,7 +14,7 @@ import { FormUsuariosComponent } from './form-usuarios/form-usuarios.component';
 import { ListarAgendamentosComponent } from './listar-agendamentos/listar-agendamentos.component';
 import { FormAgendamentosComponent } from './form-agendamentos/form-agendamentos.component';
 import { HomeComponent } from './home/home.component';
-
+import { MenubarModule } from 'primeng/menubar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +32,8 @@ import { HomeComponent } from './home/home.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MenubarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
