@@ -4,6 +4,8 @@ import { ListarEspecialidadesComponent } from './listar-especialidades/listar-es
 import { FormEspecialidadeComponent } from './form-especialidade/form-especialidade.component';
 import { ListarProfissionaisComponent } from './listar-profissionais/listar-profissionais.component';
 import { FormProfissionaisComponent } from './form-profissionais/form-profissionais.component';
+import { ListarUsuariosComponent } from './listar-usuarios/listar-usuarios.component';
+import { FormUsuariosComponent } from './form-usuarios/form-usuarios.component';
 
 const routes: Routes = [
   {
@@ -25,6 +27,18 @@ const routes: Routes = [
   {
     path: 'profissionais/form/:id',
     component: FormProfissionaisComponent
+  },
+  {
+    path: 'usuarios',
+    component: ListarUsuariosComponent
+  },
+  {
+    path: 'usuarios/form',
+    component: FormUsuariosComponent
+  },
+  {
+    path: 'usuarios/form/:id',
+    component: FormUsuariosComponent
   }
 ];
 

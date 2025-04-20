@@ -9,6 +9,8 @@ import { ListarEspecialidadesComponent } from './listar-especialidades/listar-es
 import { FormEspecialidadeComponent } from './form-especialidade/form-especialidade.component';
 import { ListarProfissionaisComponent } from './listar-profissionais/listar-profissionais.component';
 import { FormProfissionaisComponent } from './form-profissionais/form-profissionais.component';
+import { ListarUsuariosComponent } from './listar-usuarios/listar-usuarios.component';
+import { FormUsuariosComponent } from './form-usuarios/form-usuarios.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { FormProfissionaisComponent } from './form-profissionais/form-profission
     FormEspecialidadeComponent,
     ListarProfissionaisComponent,
     FormProfissionaisComponent,
+    ListarUsuariosComponent,
+    FormUsuariosComponent,
   ],
   imports: [
     BrowserModule,
